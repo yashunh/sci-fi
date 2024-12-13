@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  UID          String  @id @unique
+  Name         String?
+  clubID       String?
+  password     String
+  otp          Int?
+  authorized   Boolean @default(false)
+  PixelAndCode Boolean @default(false)
+  TechAHunt    Boolean @default(false)
+  Synergy      Boolean @default(false)
+  Nipam        Boolean @default(false)
+  post         Post[]
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  createdOn DateTime @default(now())
+  url      String?
+  verified  Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [UID])
+  authorId  String
+}

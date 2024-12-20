@@ -1,7 +1,7 @@
 node_modules
 firebase
+transporter
 # Keep environment variables out of version control
 .env
 test.js
 test2.js
-transporter

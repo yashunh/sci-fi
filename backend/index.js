@@ -165,6 +165,12 @@ app.post("/signin", async (req, res) => {
         })
     }
 
+    if(existingUser.password !== req.body.password){
+        return res.status(411).json({
+            message: "Incorrect Password"
+        })
+    }
+
     const token = jwt.sign({
         uid: existingUser.UID
     }, process.env.JWT_SECRET)

@@ -3,8 +3,7 @@ import jwt from "jsonwebtoken"
 export const authMiddleware = async(req,res,next) => {
     const headers = req.headers.authorization
     if(!headers || !headers.startsWith('Bearer')){
-        console.log("Invalid headers")
-        return res.status(403).json({});
+        return res.status(403).json({msg:"Invalid headers"});
     }
     const token = headers.split(' ')[1]
     try{
